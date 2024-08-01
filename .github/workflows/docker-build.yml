@@ -32,7 +32,7 @@ jobs:
           docker pull phamthanhhung/tradeui:latest
           docker stop tradeui || true
           docker rm tradeui || true
-          docker run -d -p 80:80 --name tradeui phamthanhhung/tradeui:latest
+          docker run -d -p 8088:80 --name tradeui phamthanhhung/tradeui:latest
         EOF
   env:
     USER: root
