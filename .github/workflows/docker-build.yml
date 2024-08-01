@@ -1,0 +1,38 @@
+name: Build and Deploy Angular App with Docker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v1
+
+    - name: Build Docker image
+      run: docker build -t phamthanhhung/tradeui:latest -f Dockerfile .
+
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+    - name: Push Docker image
+      run: docker push phamthanhhung/tradeui:latest
+
+    - name: SSH to VM and Deploy
+      run: |
+        sudo apt-get update && sudo apt-get install -y sshpass
+        sshpass -p "${{ secrets.VM_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${USER}@${{ secrets.VM_HOST }} << 'EOF'
+          docker pull phamthanhhung/tradeui:latest
+          docker stop tradeui || true
+          docker rm tradeui || true
+          docker run -d -p 80:80 --name tradeui phamthanhhung/tradeui:latest
+        EOF
+  env:
+    USER: root
