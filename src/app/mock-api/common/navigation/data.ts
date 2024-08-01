@@ -31,7 +31,7 @@ export const futuristicNavigation: FuseNavigationItem[] = [
 export const horizontalNavigation: FuseNavigationItem[] = [
     {
         id   : 'example',
-        title: 'Người dùng',
+        title: 'Example',
         type : 'basic',
         icon : 'heroicons_outline:user',
         link : '/example'

@@ -26,7 +26,7 @@ import { Subject, takeUntil } from 'rxjs';
 export class MaterialLayoutComponent implements OnInit, OnDestroy
 {
     isScreenSmall: boolean;
-    navigation: Navigation;
+    navigation: any = {};
     private _unsubscribeAll: Subject<any> = new Subject<any>();
 
     /**
@@ -69,6 +69,7 @@ export class MaterialLayoutComponent implements OnInit, OnDestroy
             .subscribe((navigation: Navigation) =>
             {
                 this.navigation = navigation;
+                console.log(this.navigation);
             });
 
         // Subscribe to media changes
