@@ -36,9 +36,9 @@ jobs:
         sshpass -p "${{ secrets.VM_PASSWORD }}" ssh -o StrictHostKeyChecking=no ${USER}@${{ secrets.VM_HOST }} << 'EOF'
           # Commands to execute on the server
           docker pull phamthanhhung/tradeui:latest
-          docker stop tradeapi || true
-          docker rm tradeapi || true
-          docker run -d -p 8080:8080 --name tradeapi phamthanhhung/tradeui
+          docker stop tradeui || true
+          docker rm tradeui || true
+          docker run -d -p 8088:80 --name tradeui phamthanhhung/tradeui
         EOF
       env:
         USER: root
