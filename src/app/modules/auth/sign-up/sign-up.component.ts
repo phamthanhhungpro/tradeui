@@ -11,6 +11,8 @@ import { Router, RouterLink } from '@angular/router';
 import { fuseAnimations } from '@fuse/animations';
 import { FuseAlertComponent, FuseAlertType } from '@fuse/components/alert';
 import { AuthService } from 'app/core/auth/auth.service';
+import { RoleEnum } from 'app/core/common/model/roleEnum';
+import { AuthUserService } from 'app/services/auth-user.service';
 
 @Component({
     selector     : 'auth-sign-up',
@@ -38,6 +40,7 @@ export class AuthSignUpComponent implements OnInit
         private _authService: AuthService,
         private _formBuilder: UntypedFormBuilder,
         private _router: Router,
+        private _authUserService: AuthUserService,
     )
     {
     }
@@ -56,8 +59,7 @@ export class AuthSignUpComponent implements OnInit
                 name      : ['', Validators.required],
                 email     : ['', [Validators.required, Validators.email]],
                 password  : ['', Validators.required],
-                company   : [''],
-                agreements: ['', Validators.requiredTrue],
+                role      : [RoleEnum.Buyer, Validators.required],
             },
         );
     }
@@ -84,12 +86,12 @@ export class AuthSignUpComponent implements OnInit
         this.showAlert = false;
 
         // Sign up
-        this._authService.signUp(this.signUpForm.value)
+        this._authUserService.createUser(this.signUpForm.value)
             .subscribe(
                 (response) =>
                 {
                     // Navigate to the confirmation required page
-                    this._router.navigateByUrl('/confirmation-required');
+                    this._router.navigateByUrl('/sign-up-success');
                 },
                 (response) =>
                 {
