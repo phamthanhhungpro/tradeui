@@ -5,11 +5,43 @@
 // https://github.com/auth0/angular2-jwt
 // -----------------------------------------------------------------------------------------------------
 
+import { RoleEnum } from "../common/model/roleEnum";
+
 export class AuthUtils
 {
     // -----------------------------------------------------------------------------------------------------
     // @ Public methods
     // -----------------------------------------------------------------------------------------------------
+
+    static isAdmin(): boolean
+    {
+        let token = localStorage.getItem('accessToken');
+        return this.getRoleFromToken(token) === RoleEnum[1];
+    }
+
+    /**
+     * Get ROLE from token
+     *
+     * @param token
+     */
+    static getRoleFromToken(token: string): string
+    {
+        if ( !token )
+        {
+            return '';
+        }
+
+        const tokenParts = token.split('.');
+
+        if ( tokenParts.length !== 3 )
+        {
+            throw new Error('The token is invalid.');
+        }
+
+        const tokenDecoded = JSON.parse(this._urlBase64Decode(tokenParts[1]));
+
+        return tokenDecoded.role;
+    }
 
     /**
      * Is token expired?

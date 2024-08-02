@@ -60,4 +60,12 @@ export class UserService
             }),
         );
     }
+
+    /**
+     * Check role
+     */
+
+    isAdmin(): boolean {
+        return this.user.role === '1';
+    }
 }

@@ -1,31 +1,33 @@
 /* eslint-disable */
 import { FuseNavigationItem } from '@fuse/components/navigation';
+import { AuthUtils } from 'app/core/auth/auth.utils';
+import { UserService } from 'app/core/user/user.service';
 
 export const defaultNavigation: FuseNavigationItem[] = [
     {
-        id   : 'example',
+        id: 'example',
         title: 'Example',
-        type : 'basic',
-        icon : 'heroicons_outline:chart-pie',
-        link : '/example'
+        type: 'basic',
+        icon: 'heroicons_outline:chart-pie',
+        link: '/example'
     }
 ];
 export const compactNavigation: FuseNavigationItem[] = [
     {
-        id   : 'example',
+        id: 'example',
         title: 'Example',
-        type : 'basic',
-        icon : 'heroicons_outline:chart-pie',
-        link : '/example'
+        type: 'basic',
+        icon: 'heroicons_outline:chart-pie',
+        link: '/example'
     }
 ];
 export const futuristicNavigation: FuseNavigationItem[] = [
     {
-        id   : 'example',
+        id: 'example',
         title: 'Example',
-        type : 'basic',
-        icon : 'heroicons_outline:chart-pie',
-        link : '/example'
+        type: 'basic',
+        icon: 'heroicons_outline:chart-pie',
+        link: '/example'
     }
 ];
 export const horizontalNavigation: FuseNavigationItem[] = [
@@ -34,6 +36,12 @@ export const horizontalNavigation: FuseNavigationItem[] = [
         title: 'QUẢN TRỊ HỆ THỐNG',
         type: 'group',
         icon: 'mat_outline:arrow_drop_down',
+        hidden(item) {
+            if (AuthUtils.isAdmin()) {
+                return false;
+            }
+            return true;
+        },
         children: [
             {
                 id: 'example',
