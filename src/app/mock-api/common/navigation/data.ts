@@ -30,10 +30,29 @@ export const futuristicNavigation: FuseNavigationItem[] = [
 ];
 export const horizontalNavigation: FuseNavigationItem[] = [
     {
-        id   : 'example',
-        title: 'Example',
-        type : 'basic',
-        icon : 'heroicons_outline:user',
-        link : '/example'
-    }
+        id: 'quan-tri-he-thong',
+        title: 'QUẢN TRỊ HỆ THỐNG',
+        type: 'group',
+        icon: 'mat_outline:arrow_drop_down',
+        children: [
+            {
+                id: 'example',
+                title: 'Example',
+                type: 'basic',
+                link: '/example',
+                hidden(item) {
+                    return false;
+                },
+            },
+            {
+                id: 'nguoi-dung',
+                title: 'Người dùng',
+                type: 'basic',
+                link: '/quan-tri-nguoi-dung',
+                hidden(item) {
+                    return false;
+                },
+            },
+        ]
+    },
 ];

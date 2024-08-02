@@ -91,7 +91,7 @@ export class AuthService
     signInUsingToken(): Observable<any>
     {
         // Sign in using the token
-        return this._httpClient.post('api/auth/sign-in-with-token', {
+        return this._httpClient.post(`${this.apiUrl}User/login-with-token`, {
             accessToken: this.accessToken,
         }).pipe(
             catchError(() =>
