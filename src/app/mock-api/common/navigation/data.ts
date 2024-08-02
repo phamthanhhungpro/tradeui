@@ -63,4 +63,27 @@ export const horizontalNavigation: FuseNavigationItem[] = [
             },
         ]
     },
+    {
+        id: 'thiet-lap-he-thong',
+        title: 'THIÊT LẬP HỆ THỐNG',
+        type: 'group',
+        icon: 'mat_outline:arrow_drop_down',
+        hidden(item) {
+            if (AuthUtils.isAdmin()) {
+                return false;
+            }
+            return true;
+        },
+        children: [
+            {
+                id: 'danh-muc',
+                title: 'Danh mục',
+                type: 'basic',
+                link: '/danh-muc',
+                hidden(item) {
+                    return false;
+                },
+            },
+        ]
+    },
 ];
