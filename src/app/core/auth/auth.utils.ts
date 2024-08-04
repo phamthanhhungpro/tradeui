@@ -19,6 +19,12 @@ export class AuthUtils
         return this.getRoleFromToken(token) === RoleEnum[1];
     }
 
+    static isSeller(): boolean
+    {
+        let token = localStorage.getItem('accessToken');
+        return this.getRoleFromToken(token) === RoleEnum[2];
+    }
+
     /**
      * Get ROLE from token
      *
@@ -41,6 +47,25 @@ export class AuthUtils
         const tokenDecoded = JSON.parse(this._urlBase64Decode(tokenParts[1]));
 
         return tokenDecoded.role;
+    }
+
+    static getUserIdFromToken(token: string): string {
+        if ( !token )
+        {
+            console.log("Token is null");
+
+            return '';
+        }
+
+        const tokenParts = token.split('.');
+
+        if ( tokenParts.length !== 3 )
+        {
+            throw new Error('The token is invalid.');
+        }
+
+        const tokenDecoded = JSON.parse(this._urlBase64Decode(tokenParts[1]));
+        return tokenDecoded.nameid;
     }
 
     /**

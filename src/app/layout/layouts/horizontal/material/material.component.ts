@@ -112,4 +112,8 @@ export class MaterialLayoutComponent implements OnInit, OnDestroy
             navigation.toggle();
         }
     }
+
+    goHome(): void {
+        this._router.navigate(['/']);
+    }
 }

@@ -4,6 +4,8 @@ import { AuthGuard } from 'app/core/auth/guards/auth.guard';
 import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
 import { QuanTriNguoiDungComponent } from './modules/admin/quan-tri-nguoi-dung/quan-tri-nguoi-dung.component';
+import { QuanTriDanhMucComponent } from './modules/admin/quan-tri-danh-muc/quan-tri-danh-muc.component';
+import { ProfileComponent } from './layout/common/profile/profile.component';
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -79,8 +81,9 @@ export const appRoutes: Route[] = [
             initialData: initialDataResolver
         },
         children: [
-            {path: 'example', loadChildren: () => import('app/modules/admin/example/example.routes')},
+            {path: 'profile', component: ProfileComponent},
             {path: 'quan-tri-nguoi-dung', component: QuanTriNguoiDungComponent},
+            {path: 'quan-tri-danh-muc', component: QuanTriDanhMucComponent},
         ]
     }
 ];

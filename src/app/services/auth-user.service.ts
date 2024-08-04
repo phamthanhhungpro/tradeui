@@ -24,4 +24,19 @@ export class AuthUserService {
   deleteUser(id: any): Observable<any> {
     return this.http.delete(`${baseUrl}/${id}`);
   }
+
+  signInByToken(): Observable<any> {
+
+    return this.http.post(`${baseUrl}/login-with-token`, {
+      accessToken: localStorage.getItem('accessToken'),
+    });
+  }
+
+  updateUser(id: any, data: any): Observable<any> {
+    return this.http.put(`${baseUrl}/${id}`, data);
+  }
+
+  changePassword(data: any): Observable<any> {
+    return this.http.post(`${baseUrl}/change-password`, data);
+  }
 }

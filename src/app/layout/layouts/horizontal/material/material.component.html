@@ -31,8 +31,8 @@
             <!-- Top bar -->
             <div class="relative flex flex-auto flex-0 items-center h-16 px-4 md:px-6">
                 <!-- Logo -->
-                <ng-container *ngIf="!isScreenSmall">
-                    <div class="flex items-center mx-2">
+                <ng-container *ngIf="!isScreenSmall" >
+                    <div class="flex items-center mx-2 cursor-pointer" (click)="goHome()">
                         <!-- Light version -->
                         <img
                             class="w-24 dark:hidden"
@@ -55,11 +55,12 @@
                 </ng-container>
                 <!-- Components -->
                 <div class="flex items-center pl-2 ml-auto space-x-1 sm:space-x-2">
-                    <fuse-fullscreen class="hidden md:block"></fuse-fullscreen>
+                    <!-- <fuse-fullscreen class="hidden md:block"></fuse-fullscreen>
                     <search [appearance]="'bar'"></search>
                     <shortcuts></shortcuts>
                     <messages></messages>
-                    <notifications></notifications>
+                    <notifications></notifications> -->
+                    <messages></messages>
                     <user></user>
                 </div>
             </div>
