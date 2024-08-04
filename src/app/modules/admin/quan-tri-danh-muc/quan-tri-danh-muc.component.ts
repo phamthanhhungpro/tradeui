@@ -88,6 +88,8 @@ export class QuanTriDanhMucComponent {
         return { items };
       })
     );
+    this._changeDetectorRef.detectChanges();
+    console.log(this.pageIndex, this.pageSize);
   }
 
   onPageChange(event): void {

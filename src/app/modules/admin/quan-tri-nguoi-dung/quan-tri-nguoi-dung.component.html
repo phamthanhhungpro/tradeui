@@ -69,7 +69,7 @@
                     <mat-paginator #paginator
                         class="sm:absolute sm:inset-x-0 sm:bottom-0 border-b sm:border-t sm:border-b-0 z-10 bg-gray-50 dark:bg-transparent"
                         [ngClass]="{'pointer-events-none': isLoading}" [length]="totalItems" [pageSize]="pageSize"
-                        [pageIndex]="pageNumber" [pageSizeOptions]="[5, 10, 25, 100]" [showFirstLastButtons]="true"
+                        [pageIndex]="pageIndex" [pageSizeOptions]="[5, 10, 25, 100]" [showFirstLastButtons]="true"
                         (page)="onPageChange($event)">
                     </mat-paginator>
                 </ng-container>
