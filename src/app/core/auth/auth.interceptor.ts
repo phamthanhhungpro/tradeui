@@ -13,7 +13,6 @@ import { catchError, Observable, throwError } from 'rxjs';
 export const authInterceptor = (req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> =>
 {
     const authService = inject(AuthService);
-
     // Clone the request object
     let newReq = req.clone();
 

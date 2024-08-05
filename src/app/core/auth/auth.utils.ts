@@ -16,12 +16,18 @@ export class AuthUtils
     static isAdmin(): boolean
     {
         let token = localStorage.getItem('accessToken');
+        if(this.isTokenExpired(token)) {
+            return false;
+        }
         return this.getRoleFromToken(token) === RoleEnum[1];
     }
 
     static isSeller(): boolean
     {
         let token = localStorage.getItem('accessToken');
+        if(this.isTokenExpired(token)) {
+            return false;
+        }
         return this.getRoleFromToken(token) === RoleEnum[2];
     }
 
@@ -34,6 +40,10 @@ export class AuthUtils
     {
         if ( !token )
         {
+            return '';
+        }
+
+        if(this.isTokenExpired(token)) {
             return '';
         }
 
@@ -57,6 +67,10 @@ export class AuthUtils
             return '';
         }
 
+        if(this.isTokenExpired(token)) {
+            return '';
+        }
+        
         const tokenParts = token.split('.');
 
         if ( tokenParts.length !== 3 )
